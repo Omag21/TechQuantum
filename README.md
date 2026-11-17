@@ -1,26 +1,62 @@
+<p>
+  <img src="assets/emsi-logo.webp" alt="EMSI — École Marocaine des Sciences de l’Ingénieur" height="58">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/quantum-africa-logo.png" alt="Quantum Africa" height="58">
+</p>
+
 # Moroccan Crop Classification Challenge
 
-Build a quantum or hybrid model to classify **alfalfa, maize and wheat** from satellite features. You receive **914 training, 150 validation and 221 unlabeled test fields**. Start with the [student brief (PDF)](Student_Challenge_Brief.pdf), then work through [the notebook](notebooks/00_start_here.ipynb).
+**Qiskit Fall Fest · EMSI · Quantum Africa**
+
+Build a quantum or hybrid model to classify **alfalfa, maize and wheat** from satellite features. You receive **914 training, 150 validation and 221 unlabeled test fields**. Start with the [student brief (PDF)](Student_Challenge_Brief.pdf), then work through [the notebook](notebooks/Qiskit_QuantumAfrica_Crop_Challenge.ipynb).
 
 The simple starter QNN performs worse than the classical baseline. Your task is to improve the approach **or replace it with another quantum or hybrid model**. You do not have to extend this QNN. A well-supported comparison can earn full analysis credit even if it does not beat the baseline.
 
 ## Install and run
 
-Use Python 3.12 from the repository root:
+Clone the repository, then create a Python 3.12 environment:
 
 ```bash
+git clone https://github.com/walid-mk/QiskitFallFest_EMSI_QuantumAfrica.git
+cd QiskitFallFest_EMSI_QuantumAfrica
 python3.12 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python -m ipykernel install --user --name crop-challenge --display-name "Crop challenge"
 ```
 
-Open `notebooks/00_start_here.ipynb` in a notebook editor, select **Crop challenge**, and run all cells. The pinned environment uses Qiskit 2.4.2 and Qiskit Machine Learning 0.9.1. All data is included; local simulation needs no IBM token. To execute and export without an editor:
+Open `notebooks/Qiskit_QuantumAfrica_Crop_Challenge.ipynb` in a notebook editor, select **Crop challenge**, and run all cells. The pinned environment uses Qiskit 2.4.2 and Qiskit Machine Learning 0.9.1. All data is included; local simulation needs no IBM token. To execute and export without an editor:
 
 ```bash
-.venv/bin/python -m jupyter nbconvert --to html --execute notebooks/00_start_here.ipynb --output-dir outputs
+.venv/bin/python -m jupyter nbconvert --to html --execute notebooks/Qiskit_QuantumAfrica_Crop_Challenge.ipynb --output-dir outputs
 ```
 
 The default fit uses 100 fixed training fields. Set `USE_FULL_TRAINING = True` for the main 914-field comparison. Later plots read saved full-training results, so changing the quick fit does not replace those plots. Your generated files go in `outputs/`.
+
+## Dataset in context
+
+Ouassanouan et al. (2026) describe around **10,000 surveyed agricultural parcels** across Morocco, with crop and irrigation labels and associated satellite observations. This challenge uses a prepared **three-crop cohort from Doukkala**, with fixed training, validation and test splits. Read the [dataset paper](https://www.nature.com/articles/s41597-026-06993-y) for the wider collection methodology.
+
+<p align="center">
+  <a href="https://www.nature.com/articles/s41597-026-06993-y/figures/1">
+    <img src="assets/morocco-study-regions.webp" alt="Figure 1: Moroccan study regions, surveyed agricultural parcels and mean annual NDVI for 2024" width="430">
+  </a>
+</p>
+
+**Image source:** Figure 1 in Ouassanouan, Y., Elfarkh, J., Grich, S., Liblab, A. & Chehbouni, A., *Crop and irrigation types ground-truth dataset for Moroccan agricultural regions*, **Scientific Data 13, 746 (2026)**. [Original figure](https://www.nature.com/articles/s41597-026-06993-y/figures/1) · [DOI](https://doi.org/10.1038/s41597-026-06993-y). © The Author(s) 2026, reproduced unchanged under [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/). The map describes the source dataset's coverage, not the challenge splits.
+
+## Inside the starter
+
+<p align="center">
+  <img src="assets/data-overview.png" alt="Training and validation class counts, alongside the first two training-fitted PCA components" width="820">
+</p>
+
+**Explore the data:** training classes are imbalanced; validation contains 50 fields per crop. PCA provides a compact feature view, fitted only on training data.
+
+<p align="center">
+  <img src="assets/starter-circuit.png" alt="Starter four-qubit circuit with RY input encoding, eight trainable angles and three CX gates" width="510">
+</p>
+
+**Understand the model:** four prepared features enter through RY gates, followed by eight trainable angles and three CX gates. The notebook explains the three-class readout and where you can change or replace this model.
 
 ## Starting results
 
@@ -31,6 +67,12 @@ Validation results using all 914 training fields and seeds 0, 1 and 2:
 | Classical baseline: RBF SVM | 0.8797 | 88.00% |
 | Simple four-qubit QNN | 0.8557 | 85.56% |
 | Small classical replacement control | 0.5814 | 65.11% |
+
+<p align="center">
+  <img src="assets/validation-performance.png" alt="Validation macro-F1 across three seeds and runtime comparison for the SVM, classical control and QNN" width="820">
+</p>
+
+**Read the comparison:** dots show seeds 0/1/2, error bars show seed standard deviation, and runtime uses a logarithmic scale. Timings depend on the machine. All three starter figures above are generated by the notebook from the supplied data and saved validation runs.
 
 The SVM is deterministic. The QNN has eight trainable angles; the control has eleven parameters, a disclosed 37.5% mismatch. Saved predictions, histories and scores are in `results/`. Keep them as reference results and save your own runs separately. These results do not demonstrate a quantum advantage.
 
