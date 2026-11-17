@@ -24,7 +24,7 @@ python3.12 -m venv .venv
 .venv/bin/python -m ipykernel install --user --name crop-challenge --display-name "Crop challenge"
 ```
 
-Open `notebooks/Qiskit_QuantumAfrica_Crop_Challenge.ipynb` in a notebook editor, select **Crop challenge**, and run all cells. The pinned environment uses Qiskit 2.4.2 and Qiskit Machine Learning 0.9.1. All data is included; local simulation needs no IBM token. To execute and export without an editor:
+The notebook includes saved outputs for viewing directly on GitHub. To reproduce them, open `notebooks/Qiskit_QuantumAfrica_Crop_Challenge.ipynb` in a notebook editor, select **Crop challenge**, and run all cells. The pinned environment uses Qiskit 2.4.2 and Qiskit Machine Learning 0.9.1. All data is included; local simulation needs no IBM token. To execute and export without an editor:
 
 ```bash
 .venv/bin/python -m jupyter nbconvert --to html --execute notebooks/Qiskit_QuantumAfrica_Crop_Challenge.ipynb --output-dir outputs
