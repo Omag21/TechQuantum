@@ -99,3 +99,13 @@ Hardware inference is optional and disabled by default. Only that section needs 
 ## Data source
 
 Adapted from Ouassanouan et al., [Moroccan Crop and Irrigation Dataset v2](https://doi.org/10.6084/m9.figshare.28486022.v2), under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Filtering, daily medians, spatial splitting and training-only PCA were applied. Labels surveyed on 23–27 April are **assumed** to apply to imagery from 25 April 2024; crop persistence is not independently verified. Cloud handling and band calibration are undocumented. Results describe this local Doukkala cohort.
+
+## License
+
+The code and original challenge documentation are available under the [MIT License](LICENSE). Third-party materials retain their own terms:
+
+- **Dataset and derived data:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); see [data attribution](data/README.md).
+- **Paper figure**, including its reproduction in the brief: [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/), credited above.
+- **EMSI and Quantum Africa logos:** belong to their respective owners and are excluded from the MIT license.
+
+Dependencies retain their respective licenses.
