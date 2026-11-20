@@ -1,0 +1,15 @@
+.git
+.venv
+.claude
+**/__pycache__
+**/*.pyc
+outputs
+results
+notebooks
+assets
+docs
+experiments
+*.pdf
+Dockerfile
+.dockerignore
+compose.yaml

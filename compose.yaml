@@ -1,0 +1,18 @@
+# TechQuantum — crop detection interface.
+#   docker compose up -d --build     -> http://localhost:8510  (change with TQ_PORT=xxxx)
+#   docker compose logs -f           -> follow the logs
+#   docker compose down              -> stop and remove
+services:
+  app:
+    build: .
+    image: techquantum-app
+    container_name: techquantum-app
+    ports:
+      - "${TQ_PORT:-8510}:8501"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8501/_stcore/health')"]
+      interval: 30s
+      timeout: 5s
+      start_period: 60s
+      retries: 3

@@ -1,0 +1,9 @@
+{
+  "team": "TechQuantum",
+  "model": "quantum_kernel_svc",
+  "preprocessing": "StandardScaler -> PCA(8, full SVD) -> StandardScaler, fitted on training rows only",
+  "feature_map": {"name": "zz_feature_map", "qubits": 8, "reps": 2, "entanglement": "linear"},
+  "params": {"scale": 0.04, "C": 100.0},
+  "selection": "Stratified 5-fold CV on the 914 training fields (experiments/step2_quantum_kernel.py, round 2 grid); validation not used for selection.",
+  "simulation": "exact Statevector, shots=None"
+}

@@ -1,0 +1,4 @@
+# TechQuantum interface (optional). Adds only new packages on top of requirements.txt.
+-r requirements.txt
+streamlit==1.67.0
+tifffile==2026.11.16
