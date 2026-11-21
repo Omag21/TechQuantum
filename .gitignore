@@ -8,3 +8,6 @@ outputs/
 *.key
 .qiskit/
 .DS_Store
+
+# Office lock files
+~$*
